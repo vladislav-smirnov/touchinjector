@@ -7,9 +7,9 @@ plugins {
 android {
     signingConfigs {
         platformsigning {
-            keyAlias 'androiddebugkey'
+            keyAlias 'platform'
             keyPassword 'android'
-            storeFile file('platform.jks')
+            storeFile file('keys/keystore_android.keystore')
             storePassword 'android'
         }
     }
