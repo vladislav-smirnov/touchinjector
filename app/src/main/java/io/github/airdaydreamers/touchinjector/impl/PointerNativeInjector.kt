@@ -1,10 +1,10 @@
 package io.github.airdaydreamers.touchinjector.impl
 
-import android.util.Log
 import io.github.airdaydreamers.touchinjector.utils.EventWriter
+import timber.log.Timber
 import java.io.*
 
-class PointerNativeInjector(deviceName: String?) : PointerInjector(deviceName) {
+class PointerNativeInjector(private val deviceName: String) : PointerInjector {
     companion object {
         const val MAX_TOUCHES = 10
 
@@ -129,7 +129,7 @@ class PointerNativeInjector(deviceName: String?) : PointerInjector(deviceName) {
             while (true) {
                 buf.read(bytes, 0, bytes.size)
                 if (bytes.isNotEmpty()) {
-                    Log.d("touch", "size:" + bytes.size)
+                    Timber.d("size:%s", bytes.size)
                 }
             }
             //buf.close();
@@ -216,7 +216,7 @@ class PointerNativeInjector(deviceName: String?) : PointerInjector(deviceName) {
                 )
             }
             else -> {
-                //Log.e("touch, "Not enough space in array!");
+                Timber.i("Not enough space in array!")
             }
         }
     }
@@ -258,7 +258,7 @@ class PointerNativeInjector(deviceName: String?) : PointerInjector(deviceName) {
         try {
             deviceOutputStream?.flush()
         } catch (e: IOException) {
-            //Log.w("touch", "can not flush");
+            Timber.w("can not flush%s", e.message)
         }
     }
 }
