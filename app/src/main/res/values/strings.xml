@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TouchInjector</string>
+    <string name="native_injection">Native injection!</string>
+    <string name="instrument_injection">Instrument injection!</string>
 </resources>

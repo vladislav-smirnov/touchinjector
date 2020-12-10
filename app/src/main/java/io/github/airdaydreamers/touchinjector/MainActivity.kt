@@ -1,11 +1,13 @@
 package io.github.airdaydreamers.touchinjector
 
+import android.content.Context
+import android.graphics.Point
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import io.github.airdaydreamers.touchinjector.impl.PointerInjector
 import io.github.airdaydreamers.touchinjector.impl.PointerInstrumentationInjector
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import timber.log.Timber
 import kotlin.math.roundToInt
+
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     private var pointerInjector: PointerInjector? = null
@@ -66,14 +69,40 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     private suspend fun startNativeInjection() {
-        pointerInjector = PointerNativeInjector("/dev/input/event1") //native
-        //example for one touch.
-        //example for my device.
-        //TODO: implement method to calculate coordinates.
+        pointerInjector = PointerNativeInjector("/dev/input/event2") //native
+        //example for one touch. And for my device.
+
+        //coords for touch
+        val originX = 500
+        val originY = 500
+
+        /* adb shellgetevent -pl
+           this command will show all devices. find the first touch device and we can get parameters.
+        */
+        val minX = 0 //ABS_MT_POSITION_X     : value 0, min 0, max 32767
+        val minY = 0 //ABS_MT_POSITION_Y     : value 0, min 0, max 32767
+
+        val maxX = 32767 //ABS_MT_POSITION_X     : value 0, min 0, max 32767
+        val maxY = 32767 //ABS_MT_POSITION_Y     : value 0, min 0, max 32767
+
+        //resolution
+        val size = Point()
+        (getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getRealSize(size) //TODO:
+
+        val displayWidth = size.x // for me = 1920
+        val displayHeight = size.y //for me = 1080
+
+        //TODO: I'm not sure that is correct. Need check and think
+        val displayX = ((originX * (maxX - minX + 1)) / displayWidth) + minX
+        val displayY = ((originY * (maxY - minY + 1)) / displayHeight) + minY
+
+        //old values...
         val x = (500 * (32767 - 0 - 1) / (1920 + 0))
         val y = (500 * 45.5097222 + 0.5).roundToInt()
 
-        injection(x, y)
+        Timber.d("x: $x y: $y")
+        Timber.d("displayX: $displayX displayY: $displayY")
+        injection(displayX, displayY)
     }
 
     private suspend fun injection(_x: Int, _y: Int) {
