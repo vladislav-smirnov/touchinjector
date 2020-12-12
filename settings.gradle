@@ -1,2 +1,3 @@
+include ':touchinjector'
 include ':app'
 rootProject.name = "TouchInjector"
