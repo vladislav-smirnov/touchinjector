@@ -39,6 +39,7 @@ internal class PointerInstrumentationInjector : PointerInjector {
     }
 
     private fun downInternal(id: Int, x: Int, y: Int) {
+        Timber.v("id: $id x: $x y: $y")
         val isFirstPointer = pointerArray.size == 0
         val pp = PointerProperties()
         pp.id = id
@@ -69,6 +70,7 @@ internal class PointerInstrumentationInjector : PointerInjector {
     }
 
     private fun moveInternal(id: Int, x: Int, y: Int) {
+        Timber.v("id: $id x: $x y: $y")
         if (pointerArray.size > 0) {
             try {
                 val motionEvent = MotionEvent.obtain(
@@ -83,6 +85,7 @@ internal class PointerInstrumentationInjector : PointerInjector {
     }
 
     private fun upInternal(id: Int, x: Int, y: Int) {
+        Timber.v("id: $id x: $x y: $y")
         if (pointerArray.size > 0) {
             val index = pointerArray.properties.indexOfFirst { it.id == id }
             val motionEvent: MotionEvent

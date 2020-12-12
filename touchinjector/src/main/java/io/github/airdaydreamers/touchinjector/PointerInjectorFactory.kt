@@ -34,7 +34,8 @@ class PointerInjectorFactory {
             }
 
         @JvmStatic
-        fun getPointerInjector(type: InjectionType): PointerInjector {
+        @JvmOverloads
+        fun getPointerInjector(type: InjectionType = InjectionType.Instrumentation): PointerInjector {
             return when (type) {
                 is InjectionType.Instrumentation -> PointerInstrumentationInjector()
                 is InjectionType.Native -> PointerNativeInjector(type.deviceName)

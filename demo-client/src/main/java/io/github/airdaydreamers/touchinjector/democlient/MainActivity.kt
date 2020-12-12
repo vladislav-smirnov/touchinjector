@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import io.github.airdaydreamers.touchinjector.PointerInjector
 import io.github.airdaydreamers.touchinjector.PointerInjectorFactory
 import io.github.airdaydreamers.touchinjector.data.InjectionType
-import io.github.airdaydreamers.touchinjector.data.InjectorType
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -69,8 +68,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     private suspend fun startNativeInjection() {
-        pointerInjector = PointerInjectorFactory.getPointerInjector(InjectionType.Native("/dev/input/event2"))
-        pointerInjector = PointerInjectorFactory.getPointerInjector(InjectorType.NATIVE, "/dev/input/event2") //don't like this. I will remove this way
+        pointerInjector =
+            PointerInjectorFactory.getPointerInjector(InjectionType.Native("/dev/input/event2"))
         //example for one touch. And for my device.
 
         //coords for touch
