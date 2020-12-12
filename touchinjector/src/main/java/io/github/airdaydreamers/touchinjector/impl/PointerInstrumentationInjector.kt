@@ -6,11 +6,12 @@ import android.view.InputDevice
 import android.view.MotionEvent
 import android.view.MotionEvent.PointerCoords
 import android.view.MotionEvent.PointerProperties
+import io.github.airdaydreamers.touchinjector.PointerInjector
 import io.github.airdaydreamers.touchinjector.data.PointerArray
 import timber.log.Timber
 
 
-class PointerInstrumentationInjector : PointerInjector {
+internal class PointerInstrumentationInjector : PointerInjector {
     private val instrumentation: Instrumentation = Instrumentation()
     private val pointerArray = PointerArray()
 

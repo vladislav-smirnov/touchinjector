@@ -1,4 +1,4 @@
-package io.github.airdaydreamers.touchinjector.impl
+package io.github.airdaydreamers.touchinjector
 
 interface PointerInjector {
     fun addPointer(id: Int, x: Int, y: Int)

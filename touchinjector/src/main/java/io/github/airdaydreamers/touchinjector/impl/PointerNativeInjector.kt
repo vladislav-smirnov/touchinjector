@@ -1,10 +1,10 @@
 package io.github.airdaydreamers.touchinjector.impl
 
-import io.github.airdaydreamers.touchinjector.utils.EventWriter
+import io.github.airdaydreamers.touchinjector.PointerInjector
 import timber.log.Timber
 import java.io.*
 
-class PointerNativeInjector(private val deviceName: String) : PointerInjector {
+internal class PointerNativeInjector(private val deviceName: String) : PointerInjector {
     companion object {
         const val MAX_TOUCHES = 10
 
@@ -41,7 +41,8 @@ class PointerNativeInjector(private val deviceName: String) : PointerInjector {
     }
 
     private var deviceOutputStream: FileOutputStream? = null
-    private val eventWriter: EventWriter = EventWriter()
+    private val eventWriter: EventWriter =
+        EventWriter()
 
     private val pointerItems: MutableList<Int> = MutableList(MAX_TOUCHES) { -1 }
 

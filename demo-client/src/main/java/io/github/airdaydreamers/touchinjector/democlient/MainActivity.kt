@@ -8,9 +8,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import io.github.airdaydreamers.touchinjector.impl.PointerInjector
-import io.github.airdaydreamers.touchinjector.impl.PointerInstrumentationInjector
-import io.github.airdaydreamers.touchinjector.impl.PointerNativeInjector
+import io.github.airdaydreamers.touchinjector.PointerInjector
+import io.github.airdaydreamers.touchinjector.PointerInjectorFactory
+import io.github.airdaydreamers.touchinjector.data.InjectionType
+import io.github.airdaydreamers.touchinjector.data.InjectorType
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     private suspend fun startInstrInjection() {
-        pointerInjector = PointerInstrumentationInjector()
+        pointerInjector = PointerInjectorFactory.getPointerInjector(InjectionType.Instrumentation)
         //example for one touch.
         val x = 500
         val y = 500
@@ -68,7 +69,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     private suspend fun startNativeInjection() {
-        pointerInjector = PointerNativeInjector("/dev/input/event2") //native
+        pointerInjector = PointerInjectorFactory.getPointerInjector(InjectionType.Native("/dev/input/event2"))
+        pointerInjector = PointerInjectorFactory.getPointerInjector(InjectorType.NATIVE, "/dev/input/event2") //don't like this. I will remove this way
         //example for one touch. And for my device.
 
         //coords for touch
