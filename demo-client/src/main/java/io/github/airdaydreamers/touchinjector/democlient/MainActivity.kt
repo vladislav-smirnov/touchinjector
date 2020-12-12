@@ -1,10 +1,9 @@
-package io.github.airdaydreamers.touchinjector
+package io.github.airdaydreamers.touchinjector.democlient
 
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
