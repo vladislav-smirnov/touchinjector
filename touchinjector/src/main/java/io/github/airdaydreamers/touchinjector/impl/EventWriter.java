@@ -18,8 +18,8 @@ adb shell sendevent /dev/input/event1 0 0 0
 class EventWriter {
     private WeakReference<FileOutputStream> deviceOutputStreamReference;
 
-    private byte eventData[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};   //this only for 64 bit. //TODO: add support for 32 bit.
-    //private byte eventData[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private final byte[] eventData = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};   //this only for 64 bit. //TODO: add support for 32 bit.
+    //private byte[] eventData = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     //package-private
     void setOutputStream(FileOutputStream deviceOutputStream) {
@@ -28,6 +28,7 @@ class EventWriter {
 
     // TODO:  Need improve speed
     //package-private
+    @SuppressWarnings("PointlessBitwiseExpression")
     void writeEvent(short type, short code, int value) {
         try {
             //TODO: add support for 32 bit.
