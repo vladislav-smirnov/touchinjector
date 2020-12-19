@@ -3,6 +3,9 @@ plugins {
     id 'kotlin-android'
 }
 
+group = 'io.github.airdaydreamers.touchinjector'
+version = '0.9.1'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -42,3 +45,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'

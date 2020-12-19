@@ -1,0 +1,38 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'io.github.airdaydreamers.touchinjector'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'jar' //TODO: need to change to jar
+                groupId 'io.github.airdaydreamers.touchinjector'
+                artifactId 'touchinjector'
+                name 'touchinjector'
+                description 'An android library.'
+                url 'https://github.com/vladislav-smirnov/touchinjector'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'vsmirnov'
+                        name 'Vladislav Smirnov'
+                        email 'sivdead@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection 'https://github.com/vladislav-smirnov/touchinjector.git'
+                    developerConnection 'https://github.com/vladislav-smirnov/touchinjector.git'
+                    url 'https://github.com/vladislav-smirnov/touchinjector'
+                }
+            }
+        }
+    }
+}
