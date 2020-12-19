@@ -7,7 +7,7 @@ This project demonstrate how to inject touch event on Android OS.
 Download
 --------
 
-You can download a aar from GitHub's [releases page][1].
+You can download a aar from GitHub's [releases page][4].
 
 Or use Gradle:
 
@@ -67,3 +67,4 @@ This is not stable version.
 [1]: https://github.com/vladislav-smirnov/touchinjector
 [2]: https://github.com/vladislav-smirnov/touchinjector/issues/new/choose
 [3]: https://github.com/vladislav-smirnov/touchinjector/discussions
+[4]: https://github.com/vladislav-smirnov/touchinjector/releases
